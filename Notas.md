@@ -18,10 +18,12 @@
 
 
 ## Add Django Rest Framework
+https://pypi.org/project/djangorestframework/
 ```pip install djangorestframework``` 
 
 
 ## Add drf-yasg
+https://pypi.org/project/drf-yasg/
 ```pip install drf-yasg``` 
 
 
@@ -49,6 +51,11 @@ https://pypi.org/project/python-decouple/
 https://pypi.org/project/psycopg2/ 
 ```pip install psycopg2```
 
+
+## djangorestframework-simplejwt 
+https://pypi.org/project/djangorestframework-simplejwt/
+```pip install djangorestframework-simplejwt```
+```pip install djangorestframework-simplejwt[crypto]```
 
 ## Add Dumpdata
 ```python manage.py dumpdata > api_blog.json```
