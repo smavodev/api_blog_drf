@@ -18,11 +18,11 @@
 
 
 ## Add Django Rest Framework
-```pip install djangorestframework```
+```pip install djangorestframework``` 
 
 
 ## Add drf-yasg
-```pip install drf-yasg```
+```pip install drf-yasg``` 
 
 
 ## Renderizar archivos estaticos
