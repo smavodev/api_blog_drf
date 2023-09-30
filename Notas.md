@@ -53,5 +53,6 @@ https://pypi.org/project/psycopg2/
 ## Add Dumpdata
 ```python manage.py dumpdata > api_blog.json```
 
+
 ## Load Dumpdata
 ```python manage.py loaddata api_blog.json```
