@@ -9,3 +9,6 @@ class CategoryApiViewSet(ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
+    lookup_field = 'slug'  # cambia el ID * Slug para Obtener, Editar o eliminar una categoría
+
+
