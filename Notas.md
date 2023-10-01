@@ -58,6 +58,11 @@ https://pypi.org/project/djangorestframework-simplejwt/
 ```pip install djangorestframework-simplejwt[crypto]```
 
 
+## Add Filtros 
+https://pypi.org/project/django-filter/
+```pip install django-filter```
+
+
 ## Add Dumpdata
 ```python manage.py dumpdata > api_blog.json```
 
