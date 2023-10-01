@@ -57,6 +57,7 @@ https://pypi.org/project/djangorestframework-simplejwt/
 ```pip install djangorestframework-simplejwt```
 ```pip install djangorestframework-simplejwt[crypto]```
 
+
 ## Add Dumpdata
 ```python manage.py dumpdata > api_blog.json```
 
