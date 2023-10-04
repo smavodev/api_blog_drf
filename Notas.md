@@ -74,3 +74,7 @@ https://pypi.org/project/Pillow/
 
 ## Load Dumpdata
 ```python manage.py loaddata api_blog.json```
+
+
+## Add requierements
+```pip freeze > requirements.txt```
