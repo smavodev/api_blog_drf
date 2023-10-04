@@ -63,6 +63,11 @@ https://pypi.org/project/django-filter/
 ```pip install django-filter```
 
 
+## Add Pillow 
+https://pypi.org/project/Pillow/
+```pip install pillow```
+
+
 ## Add Dumpdata
 ```python manage.py dumpdata > api_blog.json```
 
