@@ -1,0 +1,933 @@
+{
+	"info": {
+		"_postman_id": "31819063-6bfb-4fcd-9475-95a7a046102f",
+		"name": "Api Rest Framework",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11696857",
+		"_collection_link": "https://bold-satellite-817203.postman.co/workspace/UnderTest~932f77d6-8722-4498-b313-172476aa285c/collection/11696857-31819063-6bfb-4fcd-9475-95a7a046102f?action=share&source=collection_link&creator=11696857"
+	},
+	"item": [
+		{
+			"name": "1 USERS",
+			"item": [
+				{
+					"name": "LOGIN USER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonResponseBody = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"access_token\", jsonResponseBody.access);\r",
+									"pm.collectionVariables.set(\"refresh_token\", jsonResponseBody.refresh);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"{{username}}\",\r\n  \"password\": \"{{password}}\"\r\n}\r\n\r\n// {\r\n// \"username\": \"smavodev\",\r\n//  \"password\": \"1nd1.sm4rT%%\"\r\n// }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/api/auth/login",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "REFRESH TOKEN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonResponseBody = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"access_token\", jsonResponseBody.access);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"refresh\": \"{{refresh_token}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/token/refresh",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"token",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ME ",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "access",
+								"value": "yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc0NzQ5NDI1MiwiaWF0IjoxNzQ2ODg5NDUyLCJqdGkiOiJhYjIyNWI0NjdmZGQ0MjcwOTgyZTFlMWNlYmI4OGU5ZSIsInVzZXJfaWQiOjF9.8vANm26Wta64duWuwO8omjbMzsBT-FmiEsLuQfTIpxg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url_base}}/api/auth/me",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2 CATEGORIES",
+			"item": [
+				{
+					"name": "GET Categories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/api/categories/",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								""
+							],
+							"query": [
+								{
+									"key": "published",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": "Noticias deportivas",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Noticias deportivas\",\r\n  \"slug\": \"noticias_deportivas_xX2cvJwQPB\",\r\n  \"published\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/api/categories/",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/api/categories/1",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Noticias deportivas A\",\r\n  \"slug\": \"noticias_deportivas_a\",\r\n  \"published\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/api/categories/1/",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Noticias deportivas B\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/api/categories/1/",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DEL Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/api/categories/10000/",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								"10000",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3 POSTS",
+			"item": [
+				{
+					"name": "GET Posts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/api/posts/",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Posts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Noticia de ultimo momento",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "La noticia de ejemplo es del tipo de categoria Noticia deportivas",
+									"type": "text"
+								},
+								{
+									"key": "slug",
+									"value": "slug_de_prueba",
+									"type": "text"
+								},
+								{
+									"key": "published",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "miniature",
+									"type": "file",
+									"src": "/C:/Users/Smavodev/Downloads/posman_local/Screenshot_1.png"
+								},
+								{
+									"key": "user",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url_base}}/api/posts/",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/api/posts/1/",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Noticia de ultimo momento 2025",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "La noticia de ejemplo es del tipo de categoria Noticia deportivas",
+									"type": "text"
+								},
+								{
+									"key": "slug",
+									"value": "slug_de_prueba_update",
+									"type": "text"
+								},
+								{
+									"key": "published",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "miniature",
+									"type": "file",
+									"src": [
+										"/C:/Users/Smavodev/Downloads/posman_local/Screenshot_1.png",
+										"/C:/Users/Smavodev/Downloads/posman_local/Gfe3b-VaEAATv5d.jpeg"
+									]
+								},
+								{
+									"key": "user",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url_base}}/api/posts/1/",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Noticia de ultimo momento 2025 Actualizado",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "La noticia de ejemplo es del tipo de categoria Noticia deportivas",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "slug",
+									"value": "slug_de_prueba_update",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "published",
+									"value": "false",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "miniature",
+									"type": "file",
+									"src": [
+										"/C:/Users/Smavodev/Downloads/posman_local/Screenshot_1.png",
+										"/C:/Users/Smavodev/Downloads/posman_local/Gfe3b-VaEAATv5d.jpeg"
+									],
+									"disabled": true
+								},
+								{
+									"key": "user",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url_base}}/api/posts/1/",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DEL Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/api/posts/100000/",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"posts",
+								"100000",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4 COMMENTS",
+			"item": [
+				{
+					"name": "GET Comments",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/api/comments/",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"comments",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": \"Comentario de prueba\",\r\n  \"user\": 1,\r\n  \"post\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/api/comments/",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"comments",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/api/comments/1/",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"comments",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": \"Comentario de prueba actualizado 2025\",\r\n  \"user\": 1,\r\n  \"post\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/api/comments/1/",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"comments",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": \"Comentario de prueba actualizado  al 10/05/2025\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/api/comments/1/",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"comments",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DEL Comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url_base}}/api/comments/10000/",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"api",
+								"comments",
+								"10000",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "password",
+			"value": "1nd1.sm4rT%%",
+			"type": "string"
+		},
+		{
+			"key": "username",
+			"value": "smavodev",
+			"type": "string"
+		},
+		{
+			"key": "url_base",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": ""
+		},
+		{
+			"key": "refresh_token",
+			"value": ""
+		}
+	]
+}
