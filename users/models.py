@@ -7,7 +7,7 @@ class User(AbstractUser):
 
     # Para crear un superusuario comentar esta parte
     email = models.EmailField(unique=True)
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
 
 
